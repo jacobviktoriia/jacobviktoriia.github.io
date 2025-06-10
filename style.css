@@ -1,11 +1,10 @@
 :root {
-  --cream: #f8f4e9;
-  --sage: #7D8E76;
-  --purple: #d8bfd8;
-  --dark-sage: #556b2f;
-  --light-purple: #e6d4e6;
-  --dark-purple: #b19cd9;
-  --text: #333333;
+  --dark-purple: #B296CA;
+  --purple: #CEB7D7;
+  --cream: #E0DCD1;
+  --sage: #ACB9AD;
+  --dark-sage: #81987F;
+  --text: #737373;
 }
 
 * {
@@ -30,7 +29,7 @@ body {
 }
 
 header {
-  background: linear-gradient(135deg, var(--sage), var(--dark-sage));
+  background: var(--dark-sage);
   color: white;
   text-align: center;
   padding: 3rem 2rem;
@@ -74,7 +73,7 @@ h1 {
 
 .floral-divider span {
   font-size: 2rem;
-  color: var(--sage);
+  color: var(--purple);
   margin: 0 10px;
 }
 
@@ -109,7 +108,7 @@ h2::after {
   transform: translateX(-50%);
   width: 80px;
   height: 3px;
-  background: linear-gradient(90deg, var(--purple), var(--sage));
+  background: var(--purple);
 }
 
 h3 {
@@ -194,7 +193,7 @@ p {
   bottom: 30px;
   left: 30px;
   width: 3px;
-  background: linear-gradient(to bottom, var(--purple), var(--sage));
+  background: var(--purple);
 }
 
 .milestone {
@@ -225,7 +224,7 @@ p {
 
 .prayer {
   text-align: center;
-  background: linear-gradient(135deg, rgba(240, 235, 221, 0.7), rgba(249, 245, 234, 0.7));
+  background: white;
 }
 
 .prayer p {
@@ -236,7 +235,7 @@ p {
 }
 
 .bonus {
-  background: linear-gradient(135deg, rgba(249, 245, 234, 0.7), rgba(240, 235, 221, 0.7));
+  background: white;
   text-align: center;
 }
 
@@ -245,7 +244,7 @@ p {
 }
 
 footer {
-  background: linear-gradient(135deg, var(--sage), var(--dark-sage));
+  background: var(--dark-sage);
   color: white;
   text-align: center;
   padding: 2.5rem;
@@ -259,7 +258,7 @@ footer {
 .website-link {
   display: block;
   margin-top: 1rem;
-  color: var(--light-purple);
+  color: white;
   font-weight: 500;
 }
 
