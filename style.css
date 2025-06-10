@@ -32,7 +32,7 @@ body {
 
 header {
   background: rgba(85, 107, 47, 0.85); /* dark-sage with 80% opacity */
-  color: white;
+  color: #EFEEE8;
   text-align: center;
   padding: 3rem 2rem;
   position: relative;
@@ -75,7 +75,7 @@ h1 {
 
 .floral-divider span {
   font-size: 2rem;
-  color: white;
+  color: #EFEEE8;
   margin: 0 10px;
 }
 
@@ -84,7 +84,7 @@ main {
 }
 
 section {
-  background-color: white;
+  background-color: #EFEEE8;
   border-radius: 15px;
   padding: 2.5rem;
   margin-bottom: 2.5rem;
@@ -123,7 +123,7 @@ p {
 
 .event {
   text-align: center;
-  background: white;
+  background: #EFEEE8;
 }
 
 .event-details {
@@ -152,7 +152,7 @@ p {
 .join-button {
   display: inline-block;
   background: var(--dark-purple);
-  color: white;
+  color: #EFEEE8;
   padding: 12px 30px;
   border-radius: 30px;
   text-decoration: none;
@@ -170,7 +170,7 @@ p {
 
 .timeline {
   position: relative;
-  background: white;
+  background: #EFEEE8;
 }
 
 .timeline::before {
@@ -211,7 +211,7 @@ p {
 
 .prayer {
   text-align: center;
-  background: white;
+  background: #EFEEE8;
 }
 
 .prayer p {
@@ -222,7 +222,7 @@ p {
 }
 
 .bonus {
-  background: white;
+  background: #EFEEE8;
   text-align: center;
 }
 
@@ -232,7 +232,7 @@ p {
 
 footer {
   background: rgba(85, 107, 47, 0.5); /* dark-sage with 80% opacity */
-  color: white;
+  color: #EFEEE8;
   text-align: center;
   padding: 2.5rem;
   font-size: 1.1rem;
@@ -245,7 +245,7 @@ footer {
 .website-link {
   display: block;
   margin-top: 1rem;
-  color: white;
+  color: #EFEEE8;
   font-weight: 500;
 }
 
@@ -327,7 +327,7 @@ footer {
 
 /* Photo gallery styles */
 .photo-gallery {
-  background-color: white;
+  background-color: #EFEEE8;
   border-radius: 15px;
   padding: 2.5rem;
   margin-bottom: 2.5rem;
@@ -391,15 +391,15 @@ footer {
 .form-group textarea {
   width: 100%;
   padding: 0.8rem;
-  border: 1px solid var(--sage);
+  border: 1px solid var(--dark-sage);
   border-radius: 8px;
   font-family: 'Raleway', sans-serif;
   font-size: 1rem;
 }
 
 .submit-button {
-  background: linear-gradient(135deg, var(--sage), var(--dark-sage));
-  color: white;
+  background: var(--dark-sage);
+  color: #EFEEE8;
   border: none;
   padding: 12px 30px;
   border-radius: 30px;
@@ -446,8 +446,8 @@ footer {
 }
 
 .submit-button {
-  background: linear-gradient(135deg, var(--sage), var(--dark-sage));
-  color: white;
+  background: var(--dark-sage);
+  color: #EFEEE8;
   border: none;
   padding: 12px 30px;
   border-radius: 30px;
@@ -672,7 +672,7 @@ footer {
   position: absolute;
   top: -40px;
   right: 0;
-  color: white;
+  color: #EFEEE8;
   font-size: 35px;
   font-weight: bold;
   cursor: pointer;
@@ -690,7 +690,7 @@ footer {
 
 /* Photo caption in modal */
 .modal-caption {
-  color: white;
+  color: #EFEEE8;
   text-align: center;
   margin-top: 15px;
   font-size: 1.1rem;
@@ -703,7 +703,7 @@ footer {
   top: 50%;
   transform: translateY(-50%);
   background: rgba(255, 255, 255, 0.2);
-  color: white;
+  color: #EFEEE8;
   border: none;
   font-size: 24px;
   padding: 15px 20px;
