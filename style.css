@@ -1,0 +1,88 @@
+/* style.css */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fdf6f0;
+  color: #333;
+  line-height: 1.6;
+}
+
+header {
+  background-color: #ffe6e1;
+  color: #861a1a;
+  padding: 2rem 1rem;
+  text-align: center;
+  border-bottom: 3px solid #ffd4cd;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+header p {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+main {
+  padding: 2rem 1rem;
+  max-width: 800px;
+  margin: auto;
+}
+
+.intro,
+.prayer {
+  margin-bottom: 2rem;
+  text-align: center;
+  font-style: italic;
+}
+
+.event,
+.timeline {
+  background-color: #fff8f6;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+}
+
+.event h2,
+.timeline h2 {
+  color: #c14444;
+  border-bottom: 2px solid #ffd4cd;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.event ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.event li {
+  padding: 0.5rem 0;
+}
+
+.event a {
+  color: #b32b2b;
+  text-decoration: underline;
+}
+
+.milestone {
+  margin-bottom: 1rem;
+}
+
+.milestone h3 {
+  margin: 0.5rem 0;
+  color: #b84848;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #ffe6e1;
+  border-top: 3px solid #ffd4cd;
+  font-weight: bold;
+}
