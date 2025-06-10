@@ -112,10 +112,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // 5. Updated photo gallery functionality with modal enlargement
   const createPhotoGallery = function() {
     const photos = [
-      { src: './assets/cottagecore.jpg', alt: 'Jacob & Viktoriia together' },
-      { src: './assets/cottagecore.jpg', alt: 'Engagement moment' },
-      { src: './assets/cottagecore.jpg', alt: 'Happy couple' },
-      { src: './assets/cottagecore.jpg', alt: 'Happy couple' }
+      { src: './assets/arm.jpg', alt: 'First Time Meeting 😍' },
+      { src: './assets/happy.jpg', alt: 'Happy Together 😊' },
+      { src: './assets/engagement.jpg', alt: 'Engagement Day 💍' },
+      { src: './assets/goodbye.jpg', alt: 'Airport Goodbyes 😭' }
     ];
 
     const galleryHTML = `
@@ -129,6 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
           `).join('')}
         </div>
+        <p class="gallery-subtitle">We've got many pictures, moments, and stories to share, so stay tuned!</p>
       </div>
       
       <!-- Photo Modal -->

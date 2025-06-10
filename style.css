@@ -139,7 +139,7 @@ p {
   padding: 1.5rem;
   border-radius: 10px;
   min-width: 200px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   border: 1px solid rgba(156, 175, 136, 0.3);
 }
 
@@ -160,12 +160,12 @@ p {
   font-size: 1.1rem;
   margin-top: 1rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(177, 156, 217, 0.2);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .join-button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(177, 156, 217, 0.2);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .timeline {
@@ -309,7 +309,7 @@ footer {
   padding: 1rem 1.5rem;
   border-radius: 10px;
   min-width: 80px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .countdown-number {
@@ -406,11 +406,12 @@ footer {
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .submit-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(156, 175, 136, 0.2);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 /* Guestbook styles */
@@ -458,7 +459,7 @@ footer {
 
 .submit-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(156, 175, 136, 0.2);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 /* Guestbook entries container - ensure consistent width */
@@ -474,7 +475,7 @@ footer {
   border-radius: 10px;
   margin-bottom: 1rem;
   text-align: left;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   position: relative;
   width: 100%;
 }
@@ -539,7 +540,7 @@ footer {
   border-radius: 30px;
   cursor: pointer;
   z-index: 100;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   transition: all 0.3s ease;
 }
 
@@ -663,7 +664,7 @@ footer {
   max-height: 80vh;
   object-fit: contain;
   border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   animation: zoomIn 0.3s ease;
 }
 
@@ -736,6 +737,37 @@ footer {
 
 .gallery-item:hover {
   transform: translateY(-5px) scale(1.02);
+}
+
+/* Target each photo specifically */
+.gallery-item:nth-child(1) img {
+  object-position: center 65%; /* Adjust for arm.jpg */
+}
+
+.gallery-item:nth-child(2) img {
+  object-position: center 45%; /* Adjust for happy.jpg */
+}
+
+.gallery-item:nth-child(3) img {
+  object-position: center 30%; /* Adjust for engagement.jpg */
+}
+
+.gallery-item:nth-child(4) img {
+  object-position: center 35%; /* Adjust for goodbye.jpg */
+}
+
+/* Gallery subtitle styling */
+.gallery-subtitle {
+  text-align: center;
+  font-style: italic;
+  color: var(--text);
+  font-size: 1.1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
 }
 
 /* Animations */
