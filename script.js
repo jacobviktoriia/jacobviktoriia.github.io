@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // 5. Add a simple photo gallery functionality
+  // 5. Updated photo gallery functionality with modal enlargement
   const createPhotoGallery = function() {
     const photos = [
       { src: './assets/cottagecore.jpg', alt: 'Jacob & Viktoriia together' },
@@ -122,12 +122,23 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="photo-gallery">
         <h2>Our Moments</h2>
         <div class="gallery-container">
-          ${photos.map(photo => `
-            <div class="gallery-item">
+          ${photos.map((photo, index) => `
+            <div class="gallery-item" onclick="openPhotoModal(${index})">
               <img src="${photo.src}" alt="${photo.alt}" loading="lazy">
               <div class="photo-caption">${photo.alt}</div>
             </div>
           `).join('')}
+        </div>
+      </div>
+      
+      <!-- Photo Modal -->
+      <div id="photoModal" class="photo-modal" onclick="closePhotoModal(event)">
+        <div class="modal-content">
+          <button class="close-modal" onclick="closePhotoModal()">&times;</button>
+          <button class="modal-nav prev-btn" onclick="changePhoto(-1)">&#10094;</button>
+          <img id="modalImage" class="modal-image" src="" alt="">
+          <button class="modal-nav next-btn" onclick="changePhoto(1)">&#10095;</button>
+          <div id="modalCaption" class="modal-caption"></div>
         </div>
       </div>
     `;
@@ -136,7 +147,80 @@ document.addEventListener('DOMContentLoaded', function() {
     if (introSection) {
       introSection.insertAdjacentHTML('afterend', galleryHTML);
     }
+
+    // Store photos globally for modal navigation
+    window.galleryPhotos = photos;
+    window.currentPhotoIndex = 0;
   };
+
+  // Photo modal functions - Add these to your script.js
+  window.openPhotoModal = function(photoIndex) {
+    const modal = document.getElementById('photoModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    
+    window.currentPhotoIndex = photoIndex;
+    const photo = window.galleryPhotos[photoIndex];
+    
+    modalImage.src = photo.src;
+    modalImage.alt = photo.alt;
+    modalCaption.textContent = photo.alt;
+    
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+  };
+
+  window.closePhotoModal = function(event) {
+    const modal = document.getElementById('photoModal');
+    
+    // Only close if clicking on the backdrop or close button
+    if (!event || event.target === modal || event.target.classList.contains('close-modal')) {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto'; // Restore scrolling
+    }
+  };
+
+  window.changePhoto = function(direction) {
+    const photos = window.galleryPhotos;
+    window.currentPhotoIndex += direction;
+    
+    // Wrap around if at beginning or end
+    if (window.currentPhotoIndex >= photos.length) {
+      window.currentPhotoIndex = 0;
+    } else if (window.currentPhotoIndex < 0) {
+      window.currentPhotoIndex = photos.length - 1;
+    }
+    
+    const modalImage = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    const photo = photos[window.currentPhotoIndex];
+    
+    modalImage.src = photo.src;
+    modalImage.alt = photo.alt;
+    modalCaption.textContent = photo.alt;
+  };
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      const modal = document.getElementById('photoModal');
+      if (modal.style.display === 'block') {
+        window.closePhotoModal();
+      }
+    }
+  });
+
+  // Navigate photos with arrow keys
+  document.addEventListener('keydown', function(event) {
+    const modal = document.getElementById('photoModal');
+    if (modal.style.display === 'block') {
+      if (event.key === 'ArrowLeft') {
+        window.changePhoto(-1);
+      } else if (event.key === 'ArrowRight') {
+        window.changePhoto(1);
+      }
+    }
+  });
 
   // Enable photo gallery
   createPhotoGallery();
