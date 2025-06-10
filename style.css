@@ -231,7 +231,7 @@ p {
 }
 
 footer {
-  background: rgba(85, 107, 47, 0.5); /* dark-sage with 80% opacity */
+  background: rgba(85, 107, 47, 0.85); /* dark-sage with 80% opacity */
   color: #EFEEE8;
   text-align: center;
   padding: 2.5rem;
