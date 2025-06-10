@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  // 3. Animate elements when they come into view
+  // 3. Animate elements when they come into view - ONE DIRECTION ONLY
   const animateOnScroll = function() {
     const elements = document.querySelectorAll('.milestone, .detail-card, section');
     
@@ -69,19 +69,26 @@ document.addEventListener('DOMContentLoaded', function() {
       const elementPosition = element.getBoundingClientRect().top;
       const screenPosition = window.innerHeight / 1.3;
 
-      if (elementPosition < screenPosition) {
+      // Only fade in when scrolling down and element comes into view
+      // Once faded in, stay visible
+      if (elementPosition < screenPosition && element.style.opacity !== '1') {
         element.style.opacity = '1';
         element.style.transform = 'translateY(0)';
       }
     });
   };
 
-  // Set initial styles for animation
-  document.querySelectorAll('.milestone, .detail-card, section').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'all 0.6s ease-out';
-  });
+  // Function to set initial styles for animation
+  const setInitialAnimationStyles = function() {
+    document.querySelectorAll('.milestone, .detail-card, section').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'all 0.6s ease-out';
+    });
+  };
+
+  // Set initial styles for existing elements
+  setInitialAnimationStyles();
 
   window.addEventListener('scroll', animateOnScroll);
   animateOnScroll(); // Run once on load
@@ -105,14 +112,15 @@ document.addEventListener('DOMContentLoaded', function() {
   // 5. Add a simple photo gallery functionality
   const createPhotoGallery = function() {
     const photos = [
-      { src: 'placeholder1.jpg', alt: 'Jacob & Viktoriia together' },
-      { src: 'placeholder2.jpg', alt: 'Engagement moment' },
-      { src: 'placeholder3.jpg', alt: 'Happy couple' }
+      { src: './assets/cottagecore.jpg', alt: 'Jacob & Viktoriia together' },
+      { src: './assets/cottagecore.jpg', alt: 'Engagement moment' },
+      { src: './assets/cottagecore.jpg', alt: 'Happy couple' },
+      { src: './assets/cottagecore.jpg', alt: 'Happy couple' }
     ];
 
     const galleryHTML = `
       <div class="photo-gallery">
-        <h3>Our Moments</h3>
+        <h2>Our Moments</h2>
         <div class="gallery-container">
           ${photos.map(photo => `
             <div class="gallery-item">
@@ -130,10 +138,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   };
 
-  // Uncomment to enable photo gallery (you'll need to add actual images)
-  // createPhotoGallery();
+  // Enable photo gallery
+  createPhotoGallery();
 
-  // 6. Add a simple guestbook functionality
+  // 6. Add a simple guestbook functionality - WITH DELETE CAPABILITY
   const createGuestbook = function() {
     const guestbookHTML = `
       <section class="guestbook">
@@ -153,35 +161,75 @@ document.addEventListener('DOMContentLoaded', function() {
       </section>
     `;
 
-    const prayerSection = document.querySelector('.prayer');
-    if (prayerSection) {
-      prayerSection.insertAdjacentHTML('afterend', guestbookHTML);
+    // Insert the guestbook section INSIDE the main container, not before the footer
+    const mainElement = document.querySelector('main');
+    if (mainElement) {
+      // Add it as the last section inside main
+      mainElement.insertAdjacentHTML('beforeend', guestbookHTML);
       
+      // Apply animation styles to the new guestbook section
+      const guestbookSection = document.querySelector('.guestbook');
+      if (guestbookSection) {
+        guestbookSection.style.opacity = '0';
+        guestbookSection.style.transform = 'translateY(20px)';
+        guestbookSection.style.transition = 'all 0.6s ease-out';
+      }
+      
+      // Now add the event listener after the form is in the DOM
       const form = document.getElementById('guestbook-form');
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const name = document.getElementById('guest-name').value;
-        const message = document.getElementById('guest-message').value;
-        
-        const entry = document.createElement('div');
-        entry.className = 'guestbook-entry';
-        entry.innerHTML = `
-          <h4>${name}</h4>
-          <p>${message}</p>
-          <small>${new Date().toLocaleDateString()}</small>
-        `;
-        
-        document.querySelector('.guestbook-entries').prepend(entry);
-        form.reset();
-        
-        // In a real implementation, you would save this to a database
-        alert('Thank you for your message!');
-      });
+      if (form) {
+        form.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          
+          const name = document.getElementById('guest-name').value;
+          const message = document.getElementById('guest-message').value;
+          
+          // Disable the submit button to prevent double submission
+          const submitButton = form.querySelector('.submit-button');
+          const originalText = submitButton.textContent;
+          submitButton.textContent = 'Submitting...';
+          submitButton.disabled = true;
+          
+          try {
+            // Check if Firebase function is available
+            if (typeof window.submitGuestbookMessage === 'function') {
+              const success = await window.submitGuestbookMessage(name, message);
+              
+              if (success) {
+                form.reset();
+                // alert('Thank you for your message! It will appear below.');
+                
+                // Store the user's name in localStorage so they can delete their messages
+                const userMessages = JSON.parse(localStorage.getItem('userMessages') || '[]');
+                userMessages.push(name.trim().toLowerCase());
+                localStorage.setItem('userMessages', JSON.stringify(userMessages));
+              } else {
+                alert('Sorry, there was an error submitting your message. Please try again or contact Jacob ASAP!');
+              }
+            } else {
+              // Fallback if Firebase isn't loaded yet
+              alert('Firebase is still loading. Please try again in a moment.');
+            }
+          } catch (error) {
+            console.error('Form submission error:', error);
+            alert('Sorry, there was an error submitting your message. Please try again.');
+          } finally {
+            // Re-enable the submit button
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
+          }
+        });
+      }
+      
+      // Trigger animation check after guestbook is added
+      setTimeout(() => {
+        animateOnScroll();
+      }, 100);
     }
   };
 
-  // Uncomment to enable guestbook
-  // createGuestbook();
+  // Enable guestbook - now it will be properly contained within the main container
+  createGuestbook();
 
   // 7. Add a music toggle button
   const addMusicPlayer = function() {
@@ -192,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     document.body.appendChild(musicButton);
     
-    const audio = new Audio('your-wedding-song.mp3'); // Replace with your music file
+    const audio = new Audio('./assets/moon-river.mp3'); // Replace with your music file
     audio.loop = true;
     
     musicButton.addEventListener('click', function() {
@@ -206,6 +254,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   };
 
-  // Uncomment to enable music player (you'll need to add your music file)
-  // addMusicPlayer();
+  // Enable music player
+  addMusicPlayer();
 });

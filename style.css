@@ -18,8 +18,10 @@ body {
   color: var(--text);
   font-family: 'Raleway', sans-serif;
   line-height: 1.6;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f8f4e9"/><path d="M0,0 Q50,20 100,0 T100,100 Q50,80 0,100 Z" fill="%23f0ebdd" opacity="0.3"/></svg>');
-  background-size: 200px;
+  background-image: url('./assets/cottagecore.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .container {
@@ -29,7 +31,7 @@ body {
 }
 
 header {
-  background: var(--dark-sage);
+  background: rgba(85, 107, 47, 0.85); /* dark-sage with 80% opacity */
   color: white;
   text-align: center;
   padding: 3rem 2rem;
@@ -51,7 +53,7 @@ h1 {
 
 .subtitle {
   font-size: 1.5rem;
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: 1.5rem;
 }
 
@@ -60,8 +62,8 @@ h1 {
   font-weight: 500;
   background-color: rgba(0,0,0,0.2);
   display: inline-block;
-  padding: 8px 25px;
-  border-radius: 30px;
+  padding: 10px 25px;
+  border-radius: 15px;
   margin-top: 1rem;
 }
 
@@ -73,7 +75,7 @@ h1 {
 
 .floral-divider span {
   font-size: 2rem;
-  color: var(--purple);
+  color: white;
   margin: 0 10px;
 }
 
@@ -82,12 +84,11 @@ main {
 }
 
 section {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: white;
   border-radius: 15px;
   padding: 2.5rem;
   margin-bottom: 2.5rem;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-  border: 1px solid rgba(156, 175, 136, 0.2);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 h2 {
@@ -108,23 +109,7 @@ h2::after {
   transform: translateX(-50%);
   width: 80px;
   height: 3px;
-  background: var(--purple);
-}
-
-h3 {
-  color: var(--dark-sage);
-  font-size: 1.4rem;
-  margin: 1.5rem 0 0.8rem;
-  position: relative;
-  padding-left: 25px;
-}
-
-h3::before {
-  content: "❀";
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: var(--purple);
+  background: var(--dark-purple);
 }
 
 p {
@@ -138,6 +123,7 @@ p {
 
 .event {
   text-align: center;
+  background: white;
 }
 
 .event-details {
@@ -153,7 +139,7 @@ p {
   padding: 1.5rem;
   border-radius: 10px;
   min-width: 200px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
   border: 1px solid rgba(156, 175, 136, 0.3);
 }
 
@@ -165,7 +151,7 @@ p {
 
 .join-button {
   display: inline-block;
-  background: linear-gradient(135deg, var(--purple), var(--dark-purple));
+  background: var(--dark-purple);
   color: white;
   padding: 12px 30px;
   border-radius: 30px;
@@ -174,16 +160,17 @@ p {
   font-size: 1.1rem;
   margin-top: 1rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(177, 156, 217, 0.3);
+  box-shadow: 0 4px 10px rgba(177, 156, 217, 0.2);
 }
 
 .join-button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(177, 156, 217, 0.4);
+  box-shadow: 0 6px 15px rgba(177, 156, 217, 0.2);
 }
 
 .timeline {
   position: relative;
+  background: white;
 }
 
 .timeline::before {
@@ -193,7 +180,7 @@ p {
   bottom: 30px;
   left: 30px;
   width: 3px;
-  background: var(--purple);
+  background: var(--dark-purple);
 }
 
 .milestone {
@@ -213,12 +200,12 @@ p {
   width: 30px;
   height: 30px;
   background: var(--cream);
-  border: 3px solid var(--purple);
+  border: 3px solid var(--dark-sage);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--purple);
+  color: var(--dark-sage);
   font-weight: bold;
 }
 
@@ -244,7 +231,7 @@ p {
 }
 
 footer {
-  background: var(--dark-sage);
+  background: rgba(85, 107, 47, 0.5); /* dark-sage with 80% opacity */
   color: white;
   text-align: center;
   padding: 2.5rem;
@@ -252,7 +239,7 @@ footer {
 }
 
 .heart {
-  color: var(--purple);
+  color: var(--dark-purple);
 }
 
 .website-link {
@@ -316,7 +303,7 @@ footer {
   padding: 1rem 1.5rem;
   border-radius: 10px;
   min-width: 80px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 
 .countdown-number {
@@ -334,7 +321,7 @@ footer {
 
 /* Photo gallery styles */
 .photo-gallery {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: white;
   border-radius: 15px;
   padding: 2.5rem;
   margin-bottom: 2.5rem;
@@ -351,7 +338,7 @@ footer {
 .gallery-item {
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   transition: transform 0.3s ease;
 }
 
@@ -417,7 +404,62 @@ footer {
 
 .submit-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(156, 175, 136, 0.4);
+  box-shadow: 0 4px 10px rgba(156, 175, 136, 0.2);
+}
+
+/* Guestbook styles */
+.guestbook {
+  text-align: center;
+}
+
+.guestbook form {
+  max-width: 600px;
+  margin: 2rem auto;
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--dark-sage);
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--sage);
+  border-radius: 8px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1rem;
+}
+
+.submit-button {
+  background: linear-gradient(135deg, var(--sage), var(--dark-sage));
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(156, 175, 136, 0.2);
+}
+
+/* Guestbook entries container - ensure consistent width */
+.guestbook-entries {
+  max-width: 600px;
+  margin: 2rem auto 0;
+  text-align: left;
 }
 
 .guestbook-entry {
@@ -426,17 +468,57 @@ footer {
   border-radius: 10px;
   margin-bottom: 1rem;
   text-align: left;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  position: relative;
+  width: 100%;
 }
 
-.guestbook-entry h4 {
-  color: var(--dark-purple);
+/* Message header - just for the name, no flex needed */
+.message-header {
   margin-bottom: 0.5rem;
+}
+
+.message-header h4 {
+  margin: 0;
+  color: var(--dark-purple);
+}
+
+/* Delete button styles - positioned absolute in top right corner */
+.delete-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  padding: 4px 6px;
+  border-radius: 3px;
+  opacity: 0.7;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.delete-button:hover {
+  opacity: 1;
+  background: rgba(220, 53, 69, 0.1);
+  transform: scale(1.1);
+}
+
+.delete-button:active {
+  transform: scale(0.95);
+}
+
+/* Ensure message content doesn't interfere with delete button */
+.guestbook-entry p {
+  margin-bottom: 0.8rem;
+  padding-right: 0;
 }
 
 .guestbook-entry small {
   color: var(--sage);
   font-size: 0.8rem;
+  display: block;
+  margin-top: 0.5rem;
 }
 
 /* Music button styles */
@@ -445,7 +527,7 @@ footer {
   bottom: 20px;
   right: 20px;
   background: var(--purple);
-  color: white;
+  color: black;
   border: none;
   padding: 10px 15px;
   border-radius: 30px;
@@ -481,5 +563,67 @@ footer {
   
   .gallery-container {
     grid-template-columns: 1fr;
+  }
+
+  .message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .message-header h4 {
+    margin: 0;
+    color: var(--dark-purple);
+    flex-grow: 1;
+  }
+
+  /* Delete button styles */
+  .delete-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    padding: 2px;
+    border-radius: 3px;
+    opacity: 0.7;
+  }
+
+  .delete-button:hover {
+    opacity: 1;
+    background: rgba(220, 53, 69, 0.1);
+    transform: scale(1.1);
+  }
+
+  .delete-button:active {
+    transform: scale(0.95);
+  }
+
+  /* Ensure guestbook entries have proper spacing */
+  .guestbook-entry {
+    position: relative;
+  }
+
+  /* Ensure message content preserves line breaks and spacing */
+  .guestbook-entry .message-content {
+    margin-bottom: 0.8rem;
+    padding-right: 0;
+    line-height: 1.6;
+    word-wrap: break-word;
+    white-space: pre-line; /* This preserves line breaks from textarea */
+  }
+
+  /* Make textarea taller to encourage multi-line messages */
+  .form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--sage);
+    border-radius: 8px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
+    min-height: 120px; /* Increased height */
+    resize: vertical; /* Allow vertical resizing */
   }
 }
