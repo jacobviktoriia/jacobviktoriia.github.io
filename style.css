@@ -354,7 +354,7 @@ footer {
 
 .gallery-item img {
   width: 100%;
-  height: 200px;
+  height: 300px;
   object-fit: cover;
 }
 
@@ -528,7 +528,37 @@ footer {
   margin-top: 0.5rem;
 }
 
-/* Music button styles */
+/* Language toggle button styles */
+.language-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: var(--purple);
+  color: black;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  z-index: 100;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.language-toggle:hover {
+  background: var(--dark-purple);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px rgba(0,0,0,0.3);
+}
+
+.language-toggle:active {
+  transform: translateY(-1px);
+}
+
+/* Adjust music button position so they don't overlap */
 .music-button {
   position: fixed;
   bottom: 20px;
@@ -544,9 +574,27 @@ footer {
   transition: all 0.3s ease;
 }
 
+/* Mobile responsive positioning */
+@media (max-width: 768px) {
+  .language-toggle {
+    bottom: 80px; /* Stack above music button on mobile */
+    left: 20px;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .music-button {
+    bottom: 20px;
+    right: 20px;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+}
+
 .music-button:hover {
   background: var(--dark-purple);
   transform: translateY(-2px);
+  color: white;
 }
 
 /* Responsive adjustments */
@@ -741,19 +789,19 @@ footer {
 
 /* Target each photo specifically */
 .gallery-item:nth-child(1) img {
-  object-position: center 65%; /* Adjust for arm.jpg */
+  object-position: center 95%; /* Adjust for arm.jpg */
 }
 
 .gallery-item:nth-child(2) img {
-  object-position: center 45%; /* Adjust for happy.jpg */
+  object-position: center 65%; /* Adjust for happy.jpg */
 }
 
 .gallery-item:nth-child(3) img {
-  object-position: center 30%; /* Adjust for engagement.jpg */
+  object-position: center 45%; /* Adjust for engagement.jpg */
 }
 
 .gallery-item:nth-child(4) img {
-  object-position: center 35%; /* Adjust for goodbye.jpg */
+  object-position: center 50%; /* Adjust for goodbye.jpg */
 }
 
 /* Gallery subtitle styling */
