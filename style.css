@@ -577,7 +577,7 @@ footer {
 /* Mobile responsive positioning */
 @media (max-width: 768px) {
   .language-toggle {
-    bottom: 80px; /* Stack above music button on mobile */
+    bottom: 20px; /* Stack above music button on mobile */
     left: 20px;
     padding: 8px 12px;
     font-size: 0.8rem;

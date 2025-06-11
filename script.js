@@ -397,7 +397,7 @@ document.addEventListener('DOMContentLoaded', function() {
       milestone3Text: "While we wait for our visa applications to finish processing, we plan to stay in Georgia 🇬🇪 to see each other as often and as long as possible. We'll share a short, interesting story about how the Lord gave us a clear and faithful path to lead us here. We'd also love to continue updating you on where He leads us next in our lives.",
       milestone4Title: "In-Person Wedding Celebration",
       milestone4Time: "When: Summer 2026",
-      milestone4Text: "We plan to celebrate our marriage with your presence in our home countries (United States 🇺🇸 with Jacob's families & friends and Russia 🇷🇺 with Viktoriia's families & friends). We will send a formal invitation as we approach that date, soon after Viktoriia's US marriage visa and Jacob's Russian marriage visa gets approved.",
+      milestone4Text: "We plan to celebrate our marriage with your presence in our home countries (United States 🇺🇸 with Jacob's family & friends and Russia 🇷🇺 with Viktoriia's family & friends). We will send a formal invitation as we approach that date, soon after Viktoriia's US marriage visa and Jacob's Russian marriage visa gets approved.",
       milestone4Note: "Note: This will be a physical celebration with full wedding experience including menu, registry, and all traditional elements.",
       
       // Prayer Section
