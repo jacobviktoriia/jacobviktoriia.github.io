@@ -383,8 +383,8 @@ document.addEventListener('DOMContentLoaded', function() {
       time: "6:00 PM (UTC-6)",
       location: "Linked Below",
       joinButton: "Join Our Ceremony",
-      ceremonyDetails1: "No RSVP required. The ceremony will be recorded for visa documentation (and of course, for our own cherished memories!). We’d love to see your faces with cameras on, but there’s absolutely no pressure. We kindly ask our guests to remain silent until Jacob & Viktoriia are officially pronounced husband and wife.",
-      ceremonyDetails2: "Thank you so much! We can't wait to see you all soon! ❤️",
+      ceremonyDetails1: "No RSVP required. The ceremony will be recorded for visa documentation (and of course, for our own cherished memories!). We’d love to see your faces with cameras on, but there’s absolutely no pressure.",
+      ceremonyDetails2: "We kindly ask our guests to remain silent until Jacob & Viktoriia are officially pronounced husband and wife. Thank you so much! We can't wait to see you all soon! ❤️",
 
       
       // Timeline
@@ -462,8 +462,8 @@ document.addEventListener('DOMContentLoaded', function() {
       time: "18:00 (UTC-6)",
       location: "Ссылка ниже",
       joinButton: "Присоединиться к церемонии",
-      ceremonyDetails1: "Подтверждение присутствия не требуется. Церемония будет записана для визовой документации (и, конечно же, для наших собственных дорогих воспоминаний!). Мы бы хотели видеть ваши лица с включёнными камерами, но никакого давления нет. Мы вежливо просим наших гостей оставаться в режиме без звука до тех пор, пока Джейкоб и Виктория не будут официально объявлены мужем и женой.",
-      ceremonyDetails2: "Большое спасибо! Мы не можем дождаться встречи с вами всеми в ближайшее время! ❤️",
+      ceremonyDetails1: "Подтверждение присутствия не требуется. Церемония будет записана для визовой документации (и, конечно же, для наших собственных дорогих воспоминаний!). Мы бы хотели видеть ваши лица с включёнными камерами, но никакого давления нет.",
+      ceremonyDetails2: "Мы вежливо просим наших гостей оставаться в режиме без звука до тех пор, пока Джейкоб и Виктория не будут официально объявлены мужем и женой. Большое спасибо! Мы не можем дождаться встречи с вами всеми в ближайшее время! ❤️",
 
       
       // Timeline
