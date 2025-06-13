@@ -110,21 +110,21 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('scroll', animateOnScroll);
   animateOnScroll(); // Run once on load
 
-  // 4. Add confirmation when clicking the join button
-  const joinButton = document.querySelector('.join-button');
-  if (joinButton) {
-    joinButton.addEventListener('click', function(e) {
-      e.preventDefault();
-      const confirmation = confirm("You're about to join Jacob & Viktoriia's wedding ceremony. The link will be available closer to the date. Would you like to be notified when it's ready?");
-      if (confirmation) {
-        const email = prompt("Please enter your email address to be notified:");
-        if (email) {
-          alert(`Thank you! We'll notify you at ${email} when the ceremony link is ready.`);
-          // In a real implementation, you would send this to your backend
-        }
-      }
-    });
-  }
+  // // 4. Add confirmation when clicking the join button
+  // const joinButton = document.querySelector('.join-button');
+  // if (joinButton) {
+  //   joinButton.addEventListener('click', function(e) {
+  //     e.preventDefault();
+  //     const confirmation = confirm("You're about to join Jacob & Viktoriia's wedding ceremony. The link will be available closer to the date. Would you like to be notified when it's ready?");
+  //     if (confirmation) {
+  //       const email = prompt("Please enter your email address to be notified:");
+  //       if (email) {
+  //         alert(`Thank you! We'll notify you at ${email} when the ceremony link is ready.`);
+  //         // In a real implementation, you would send this to your backend
+  //       }
+  //     }
+  //   });
+  // }
 
   // 5. Updated photo gallery functionality with modal enlargement
   const createPhotoGallery = function() {
@@ -383,6 +383,9 @@ document.addEventListener('DOMContentLoaded', function() {
       time: "6:00 PM (UTC-6)",
       location: "Linked Below",
       joinButton: "Join Our Ceremony",
+      ceremonyDetails1: "No RSVP required. The ceremony will be recorded for visa documentation (and of course, for our own cherished memories!). We’d love to see your faces with cameras on, but there’s absolutely no pressure. We kindly ask our guests to remain silent until Jacob & Viktoriia are officially pronounced husband and wife.",
+      ceremonyDetails2: "Thank you so much! We can't wait to see you all soon! ❤️",
+
       
       // Timeline
       timelineTitle: "Our Timeline",
@@ -459,6 +462,9 @@ document.addEventListener('DOMContentLoaded', function() {
       time: "18:00 (UTC-6)",
       location: "Ссылка ниже",
       joinButton: "Присоединиться к церемонии",
+      ceremonyDetails1: "Подтверждение присутствия не требуется. Церемония будет записана для визовой документации (и, конечно же, для наших собственных дорогих воспоминаний!). Мы бы хотели видеть ваши лица с включёнными камерами, но никакого давления нет. Мы вежливо просим наших гостей оставаться в режиме без звука до тех пор, пока Джейкоб и Виктория не будут официально объявлены мужем и женой.",
+      ceremonyDetails2: "Большое спасибо! Мы не можем дождаться встречи с вами всеми в ближайшее время! ❤️",
+
       
       // Timeline
       timelineTitle: "Наш План",
@@ -562,25 +568,30 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update event section
     const eventSection = document.querySelector('.event');
     if (eventSection) {
-      const h2 = eventSection.querySelector('h2');
-      if (h2) h2.textContent = t.eventTitle;
+      // ... your existing event section updates ...
       
-      const detailCards = eventSection.querySelectorAll('.detail-card');
-      if (detailCards[0]) {
-        detailCards[0].querySelector('h4').textContent = t.dateLabel;
-        detailCards[0].querySelector('p strong').textContent = t.date;
-      }
-      if (detailCards[1]) {
-        detailCards[1].querySelector('h4').textContent = t.timeLabel;
-        detailCards[1].querySelector('p strong').textContent = t.time;
-      }
-      if (detailCards[2]) {
-        detailCards[2].querySelector('h4').textContent = t.locationLabel;
-        detailCards[2].querySelector('p strong').textContent = t.location;
+      // Update the ceremony details paragraphs
+      const ceremonyParagraphs = eventSection.querySelectorAll('p');
+      // Find the paragraphs by their position (they should be the last two paragraphs)
+      const paragraphsArray = Array.from(ceremonyParagraphs);
+      
+      // Update the paragraph with "No RSVP required" content
+      const rsvpParagraph = paragraphsArray.find(p => 
+        p.textContent.includes('No RSVP required') || 
+        p.textContent.includes('Подтверждение присутствия не требуется')
+      );
+      if (rsvpParagraph) {
+        rsvpParagraph.textContent = t.ceremonyDetails1;
       }
       
-      const joinButton = eventSection.querySelector('.join-button');
-      if (joinButton) joinButton.textContent = t.joinButton;
+      // Update the "Thank you so much" paragraph
+      const thankYouParagraph = paragraphsArray.find(p => 
+        p.textContent.includes('Thank you so much') || 
+        p.textContent.includes('Большое спасибо')
+      );
+      if (thankYouParagraph) {
+        thankYouParagraph.textContent = t.ceremonyDetails2;
+      }
     }
     
     // Update timeline
