@@ -381,8 +381,9 @@ document.addEventListener('DOMContentLoaded', function() {
       locationLabel: "Location",
       date: "7ᵗʰ July 2025",
       time: "6:30 PM (UTC-6)",
-      location: "Linked Below",
+      location: "Link Below",
       joinButton: "Join Our Ceremony",
+      timezoneLink: "Time Zone Checker",
       ceremonyDetails1: "No RSVP required. The ceremony will be recorded for visa documentation (and of course, for our own cherished memories!). We’d love to see your faces with cameras on, but there’s absolutely no pressure.",
       ceremonyDetails2: "We kindly ask our guests to remain silent during the ceremony until Jacob & Viktoriia are officially pronounced husband and wife. Thank you so much! We can't wait to see you all soon! ❤️",
 
@@ -462,6 +463,7 @@ document.addEventListener('DOMContentLoaded', function() {
       time: "18:30 (UTC-6)",
       location: "Ссылка ниже",
       joinButton: "Присоединиться к церемонии",
+      timezoneLink: "Проверка часового пояса",
       ceremonyDetails1: "Подтверждение присутствия не требуется. Церемония будет записана для визовой документации (и, конечно же, для наших собственных дорогих воспоминаний!). Мы бы хотели видеть ваши лица с включёнными камерами, но никакого давления нет.",
       ceremonyDetails2: "Мы вежливо просим наших гостей соблюдать тишину во время церемонии до тех пор, пока Джейкоб и Виктория не будут официально объявлены мужем и женой. Большое спасибо! Мы не можем дождаться встречи с вами всеми в ближайшее время! ❤️",
 
@@ -596,6 +598,10 @@ document.addEventListener('DOMContentLoaded', function() {
       // Update join button
       const joinButton = eventSection.querySelector('.join-button');
       if (joinButton) joinButton.textContent = t.joinButton;
+
+      // Update timezone link
+      const timezoneLink = eventSection.querySelector('a[href*="timeanddate.com"]');
+      if (timezoneLink) timezoneLink.innerHTML = `${t.timezoneLink}`;
       
       // Update the ceremony details paragraphs
       const ceremonyParagraphs = eventSection.querySelectorAll('p');
