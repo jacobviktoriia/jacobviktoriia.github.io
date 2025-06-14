@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Jacob & Viktoriia's Wedding Ceremony Time Zones" />
+  <title>Wedding Time Zones</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="./assets/favicon.png">
+  <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+  <link rel="apple-touch-icon" href="./assets/favicon.png">
+  <style>
+    :root {
+      --dark-purple: #B296CA;
+      --purple: #CEB7D7;
+      --cream: #E0DCD1;
+      --sage: #ACB9AD;
+      --dark-sage: #81987F;
+      --text: #737373;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--cream);
+      color: var(--text);
+      font-family: 'Raleway', sans-serif;
+      line-height: 1.6;
+      background-image: url('./assets/cottagecore.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      background: rgba(85, 107, 47, 0.85); /* dark-sage with 80% opacity */
+      color: #EFEEE8;
+      text-align: center;
+      padding: 3rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+    }
+
+    .ceremony-time {
+      font-size: 1.5rem;
+      font-weight: 500;
+      background-color: rgba(0,0,0,0.2);
+      display: inline-block;
+      padding: 10px 25px;
+      border-radius: 15px;
+      margin-top: 1rem;
+    }
+
+    main {
+      padding: 3rem 0;
+    }
+
+    .timezone-section {
+      background-color: #EFEEE8;
+      border-radius: 15px;
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--dark-sage);
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    h2::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--dark-purple);
+    }
+
+    .timezone-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .timezone-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      border-left: 4px solid var(--dark-purple);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .timezone-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    }
+
+    .timezone-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .flag {
+      font-size: 1.5rem;
+      margin-right: 10px;
+    }
+
+    .city-name {
+      font-weight: 600;
+      color: var(--dark-sage);
+      font-size: 1.1rem;
+    }
+
+    .country-name {
+      color: var(--text);
+      font-size: 0.9rem;
+      margin-left: auto;
+    }
+
+    .time-display {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--dark-purple);
+      margin-bottom: 0.5rem;
+    }
+
+    .timezone-code {
+      font-size: 0.85rem;
+      color: var(--sage);
+      font-weight: 500;
+    }
+
+    .primary-time {
+      border-left-color: var(--dark-sage);
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+
+    .primary-time .time-display {
+      color: var(--dark-sage);
+      font-size: 1.4rem;
+    }
+
+    .floral-divider {
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    .floral-divider span {
+      font-size: 1.5rem;
+      color: var(--dark-purple);
+      margin: 0 10px;
+    }
+
+    .close-button {
+      background: var(--dark-purple);
+      color: #EFEEE8;
+      padding: 12px 30px;
+      border-radius: 30px;
+      border: none;
+      font-weight: 500;
+      font-size: 1rem;
+      margin: 2rem auto;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      text-align: center;
+      display: block;
+      width: fit-content;
+      cursor: pointer;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    .close-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      background: var(--dark-sage);
+    }
+
+    .note {
+      background: rgba(178, 150, 202, 0.1);
+      border: 1px solid var(--purple);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      text-align: center;
+      font-style: italic;
+    }
+
+    footer {
+      background: rgba(85, 107, 47, 0.85); /* dark-sage with 80% opacity */
+      color: #EFEEE8;
+      text-align: center;
+      padding: 2.5rem;
+      font-size: 1.1rem;
+    }
+
+    footer p {
+      margin: 0 0 1.6rem 0;
+    }
+
+    footer p:last-child {
+      margin-bottom: 1.6;
+    }
+
+    footer strong {
+      font-weight: 600;
+    }
+
+    /* Language toggle */
+    .language-toggle {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: var(--purple);
+      color: black;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 30px;
+      cursor: pointer;
+      z-index: 100;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .language-toggle:hover {
+      background: var(--dark-purple);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 7px 20px rgba(0,0,0,0.3);
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .ceremony-time {
+        font-size: 1.2rem;
+      }
+      
+      .timezone-section {
+        padding: 1.8rem;
+      }
+      
+      .timezone-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      .timezone-card {
+        padding: 1.2rem;
+      }
+      
+      .language-toggle {
+        bottom: 20px;
+        left: 20px;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1 id="header-title">Jacob & Viktoriia</h1>
+      <div class="subtitle" id="header-subtitle">We're getting married!</div>
+    </div>
+  </header>
+
+  <div class="container">
+    <main>
+      <section class="timezone-section">
+        <h2 id="timezone-title">Ceremony Time Zones</h2>
+        
+        <div class="note">
+          <p id="note-text">Please find your local time below to join Jacob & Viktoriia's wedding ceremony!</p>
+        </div>
+
+        <div class="timezone-grid">
+          <!-- Primary ceremony time -->
+          <div class="timezone-card primary-time">
+            <div class="timezone-header">
+              <span class="flag">🇺🇸</span>
+              <div>
+                <div class="city-name" id="ceremony-city">Ceremony Time</div>
+                <div class="country-name" id="ceremony-zone">UTC-6 Time Zone</div>
+              </div>
+            </div>
+            <div class="time-display">6:30 PM</div>
+            <div class="timezone-code">Monday, July 7, 2025</div>
+          </div>
+
+          <!-- Ulan-Ude, Russia -->
+          <div class="timezone-card">
+            <div class="timezone-header">
+              <span class="flag">🇷🇺</span>
+              <div>
+                <div class="city-name" id="uude-city">Ulan-Ude</div>
+                <div class="country-name" id="uude-country">Russia</div>
+              </div>
+            </div>
+            <div class="time-display">8:30 AM</div>
+            <div class="timezone-code"><span id="uude-date">Tuesday, July 8, 2025</span></div>
+          </div>
+
+          <!-- Ulaanbaatar, Mongolia -->
+          <div class="timezone-card">
+            <div class="timezone-header">
+              <span class="flag">🇲🇳</span>
+              <div>
+                <div class="city-name" id="ulaanbaatar-city">Ulaanbaatar</div>
+                <div class="country-name" id="ulaanbaatar-country">Mongolia</div>
+              </div>
+            </div>
+            <div class="time-display">8:30 AM</div>
+            <div class="timezone-code"><span id="ulaanbaatar-date">Tuesday, July 8, 2025</span></div>
+          </div>
+
+          <!-- Singapore -->
+          <div class="timezone-card">
+            <div class="timezone-header">
+              <span class="flag">🇸🇬</span>
+              <div>
+                <div class="city-name" id="singapore-city">Singapore</div>
+                <div class="country-name" id="singapore-country">Singapore</div>
+              </div>
+            </div>
+            <div class="time-display">8:30 AM</div>
+            <div class="timezone-code"><span id="singapore-date">Tuesday, July 8, 2025</span></div>
+          </div>
+
+          <!-- Jakarta, Indonesia -->
+          <div class="timezone-card">
+            <div class="timezone-header">
+              <span class="flag">🇮🇩</span>
+              <div>
+                <div class="city-name" id="jakarta-city">Jakarta</div>
+                <div class="country-name" id="jakarta-country">Indonesia</div>
+              </div>
+            </div>
+            <div class="time-display">7:30 AM</div>
+            <div class="timezone-code"><span id="jakarta-date">Tuesday, July 8, 2025</span></div>
+          </div>
+
+          <!-- Saint-Petersburg, Russia -->
+          <div class="timezone-card">
+            <div class="timezone-header">
+              <span class="flag">🇷🇺</span>
+              <div>
+                <div class="city-name" id="spb-city">Saint-Petersburg</div>
+                <div class="country-name" id="spb-country">Russia</div>
+              </div>
+            </div>
+            <div class="time-display">3:30 AM</div>
+            <div class="timezone-code"><span id="spb-date">Tuesday, July 8, 2025</span></div>
+          </div>
+
+          <!-- Moscow, Russia -->
+          <div class="timezone-card">
+            <div class="timezone-header">
+              <span class="flag">🇷🇺</span>
+              <div>
+                <div class="city-name" id="moscow-city">Moscow</div>
+                <div class="country-name" id="moscow-country">Russia</div>
+              </div>
+            </div>
+            <div class="time-display">3:30 AM</div>
+            <div class="timezone-code"><span id="moscow-date">Tuesday, July 8, 2025</span></div>
+          </div>
+
+          <!-- Dublin, Ireland -->
+          <div class="timezone-card">
+            <div class="timezone-header">
+              <span class="flag">🇮🇪</span>
+              <div>
+                <div class="city-name" id="dublin-city">Dublin</div>
+                <div class="country-name" id="dublin-country">Ireland</div>
+              </div>
+            </div>
+            <div class="time-display">1:30 AM</div>
+            <div class="timezone-code"><span id="dublin-date">Tuesday, July 8, 2025</span></div>
+          </div>
+
+          <!-- Indianapolis, USA -->
+          <div class="timezone-card">
+            <div class="timezone-header">
+              <span class="flag">🇺🇸</span>
+              <div>
+                <div class="city-name" id="indianapolis-city">Indianapolis</div>
+                <div class="country-name" id="indianapolis-country">USA</div>
+              </div>
+            </div>
+            <div class="time-display">8:30 PM</div>
+            <div class="timezone-code"><span id="indianapolis-date">Monday, July 7, 2025</span></div>
+          </div>
+
+          <!-- Dallas, USA -->
+          <div class="timezone-card">
+            <div class="timezone-header">
+              <span class="flag">🇺🇸</span>
+              <div>
+                <div class="city-name" id="dallas-city">Dallas</div>
+                <div class="country-name" id="dallas-country">USA</div>
+              </div>
+            </div>
+            <div class="time-display">7:30 PM</div>
+            <div class="timezone-code"><span id="dallas-date">Monday, July 7, 2025</span></div>
+          </div>
+
+          <!-- San Francisco, USA -->
+          <div class="timezone-card">
+            <div class="timezone-header">
+              <span class="flag">🇺🇸</span>
+              <div>
+                <div class="city-name" id="sf-city">San Francisco</div>
+                <div class="country-name" id="sf-country">USA</div>
+              </div>
+            </div>
+            <div class="time-display">5:30 PM</div>
+            <div class="timezone-code"><span id="sf-date">Monday, July 7, 2025</span></div>
+          </div>
+
+          <!-- Los Angeles, USA -->
+          <div class="timezone-card">
+            <div class="timezone-header">
+              <span class="flag">🇺🇸</span>
+              <div>
+                <div class="city-name" id="la-city">Los Angeles</div>
+                <div class="country-name" id="la-country">USA</div>
+              </div>
+            </div>
+            <div class="time-display">5:30 PM</div>
+            <div class="timezone-code"><span id="la-date">Monday, July 7, 2025</span></div>
+          </div>
+        </div>
+
+        <div class="floral-divider">
+          <span>❀</span><span>❀</span><span>❀</span>
+        </div>
+
+        <button id="close-button" class="close-button">← Back to Wedding Invitation</button>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <p id="footer-text">With love and great joy,</p>
+    <p><strong id="footer-names">Jacob & Viktoriia</strong></p>
+  </footer>
+
+  <button id="language-toggle" class="language-toggle">🇷🇺 Русский</button>
+
+  <script>
+    // Language translations
+    const translations = {
+      en: {
+        headerTitle: "Jacob & Viktoriia",
+        headerSubtitle: "We're getting married!",
+        timezoneTitle: "Ceremony Time Zones",
+        noteText: "Please find your local time below to join Jacob & Viktoriia's wedding ceremony!",
+        ceremonyCity: "Ceremony Time",
+        ceremonyZone: "UTC-6 Time Zone",
+        indianapolisCity: "Indianapolis",
+        indianapolisCountry: "USA",
+        dallasCity: "Dallas",
+        dallasCountry: "USA",
+        sfCity: "San Francisco", 
+        sfCountry: "USA",
+        laCity: "Los Angeles",
+        laCountry: "USA",
+        dublinCity: "Dublin",
+        dublinCountry: "Ireland",
+        moscowCity: "Moscow",
+        moscowCountry: "Russia",
+        spbCity: "Saint-Petersburg",
+        spbCountry: "Russia",
+        uudeCity: "Ulan-Ude",
+        uudeCountry: "Russia",
+        jakartaCity: "Jakarta",
+        jakartaCountry: "Indonesia",
+        singaporeCity: "Singapore",
+        singaporeCountry: "Singapore",
+        ulaanbaatarCity: "Ulaanbaatar",
+        ulaanbaatarCountry: "Mongolia",
+        closeButton: "← Back to Wedding Invitation",
+        footerText: "With love and great joy,",
+        footerNames: "Jacob & Viktoriia",
+        mondayDate: "Monday, July 7, 2025",
+        tuesdayDate: "Tuesday, July 8, 2025"
+      },
+      ru: {
+        headerTitle: "Джейкоб и Виктория",
+        headerSubtitle: "Скоро мы станем мужем и женой!",
+        timezoneTitle: "Часовые Пояса Церемонии",
+        noteText: "Пожалуйста, найдите ваше местное время ниже, чтобы присоединиться к свадебной церемонии Джейкоба и Виктории!",
+        ceremonyCity: "Время Церемонии",
+        ceremonyZone: "Часовой пояс UTC-6",
+        indianapolisCity: "Индианаполис",
+        indianapolisCountry: "США",
+        dallasCity: "Даллас",
+        dallasCountry: "США", 
+        sfCity: "Сан-Франциско",
+        sfCountry: "США",
+        laCity: "Лос-Анджелес",
+        laCountry: "США",
+        dublinCity: "Дублин",
+        dublinCountry: "Ирландия",
+        moscowCity: "Москва",
+        moscowCountry: "Россия",
+        spbCity: "Санкт-Петербург",
+        spbCountry: "Россия",
+        uudeCity: "Улан-Удэ",
+        uudeCountry: "Россия",
+        jakartaCity: "Джакарта",
+        jakartaCountry: "Индонезия",
+        singaporeCity: "Сингапур",
+        singaporeCountry: "Сингапур",
+        ulaanbaatarCity: "Улан-Батор",
+        ulaanbaatarCountry: "Монголия",
+        closeButton: "← Назад к Свадебному Приглашению",
+        footerText: "С любовью и великой радостью,",
+        footerNames: "Джейкоб и Виктория",
+        mondayDate: "Понедельник, 7 июля 2025",
+        tuesdayDate: "Вторник, 8 июля 2025"
+      }
+    };
+
+    let currentLanguage = 'en';
+
+    function updateLanguage() {
+      const t = translations[currentLanguage];
+      
+      // Update header
+      document.getElementById('header-title').textContent = t.headerTitle;
+      document.getElementById('header-subtitle').textContent = t.headerSubtitle;
+      
+      document.getElementById('timezone-title').textContent = t.timezoneTitle;
+      document.getElementById('note-text').textContent = t.noteText;
+      document.getElementById('ceremony-city').textContent = t.ceremonyCity;
+      document.getElementById('ceremony-zone').textContent = t.ceremonyZone;
+      
+      // Update city names
+      document.getElementById('indianapolis-city').textContent = t.indianapolisCity;
+      document.getElementById('indianapolis-country').textContent = t.indianapolisCountry;
+      document.getElementById('dallas-city').textContent = t.dallasCity;
+      document.getElementById('dallas-country').textContent = t.dallasCountry;
+      document.getElementById('sf-city').textContent = t.sfCity;
+      document.getElementById('sf-country').textContent = t.sfCountry;
+      document.getElementById('la-city').textContent = t.laCity;
+      document.getElementById('la-country').textContent = t.laCountry;
+      document.getElementById('dublin-city').textContent = t.dublinCity;
+      document.getElementById('dublin-country').textContent = t.dublinCountry;
+      document.getElementById('moscow-city').textContent = t.moscowCity;
+      document.getElementById('moscow-country').textContent = t.moscowCountry;
+      document.getElementById('spb-city').textContent = t.spbCity;
+      document.getElementById('spb-country').textContent = t.spbCountry;
+      document.getElementById('uude-city').textContent = t.uudeCity;
+      document.getElementById('uude-country').textContent = t.uudeCountry;
+      document.getElementById('jakarta-city').textContent = t.jakartaCity;
+      document.getElementById('jakarta-country').textContent = t.jakartaCountry;
+      document.getElementById('singapore-city').textContent = t.singaporeCity;
+      document.getElementById('singapore-country').textContent = t.singaporeCountry;
+      document.getElementById('ulaanbaatar-city').textContent = t.ulaanbaatarCity;
+      document.getElementById('ulaanbaatar-country').textContent = t.ulaanbaatarCountry;
+      
+      document.getElementById('close-button').textContent = t.closeButton;
+      
+      // Update footer
+      document.getElementById('footer-text').textContent = t.footerText;
+      document.getElementById('footer-names').textContent = t.footerNames;
+      
+      // Update dates
+      document.getElementById('indianapolis-date').textContent = t.mondayDate;
+      document.getElementById('dallas-date').textContent = t.mondayDate;
+      document.getElementById('sf-date').textContent = t.mondayDate;
+      document.getElementById('la-date').textContent = t.mondayDate;
+      document.getElementById('dublin-date').textContent = t.tuesdayDate;
+      document.getElementById('moscow-date').textContent = t.tuesdayDate;
+      document.getElementById('spb-date').textContent = t.tuesdayDate;
+      document.getElementById('uude-date').textContent = t.tuesdayDate;
+      document.getElementById('jakarta-date').textContent = t.tuesdayDate;
+      document.getElementById('singapore-date').textContent = t.tuesdayDate;
+      document.getElementById('ulaanbaatar-date').textContent = t.tuesdayDate;
+    }
+
+    // Close tab functionality
+    document.getElementById('close-button').addEventListener('click', function() {
+      window.close();
+    });
+
+    // Language toggle functionality
+    document.getElementById('language-toggle').addEventListener('click', function() {
+      currentLanguage = currentLanguage === 'en' ? 'ru' : 'en';
+      updateLanguage();
+      this.innerHTML = currentLanguage === 'en' ? '🇷🇺 Русский' : '🇺🇸 English';
+    });
+
+    // Animate cards on load
+    document.addEventListener('DOMContentLoaded', function() {
+      const cards = document.querySelectorAll('.timezone-card');
+      cards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+          card.style.transition = 'all 0.6s ease-out';
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, index * 100);
+      });
+    });
+  </script>
+</body>
+</html>

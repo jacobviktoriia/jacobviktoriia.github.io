@@ -164,6 +164,7 @@ p {
 }
 
 .join-button:hover {
+  background: var(--dark-sage);
   transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
@@ -410,6 +411,7 @@ footer {
 }
 
 .submit-button:hover {
+  background: var(--dark-purple);
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
