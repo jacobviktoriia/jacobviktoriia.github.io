@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
       { src: './assets/arm.jpg', alt: 'First Time Meeting 😍' },
       { src: './assets/happy.jpg', alt: 'Happy Together 😊' },
       { src: './assets/engagement.jpg', alt: 'Engagement Day 💍' },
-      { src: './assets/baby.jpg', alt: 'Pretty Little Baby 🐣' }
+      { src: './assets/baby.jpg', alt: 'Who will be my future husband/wife? 🤭' }
     ];
 
     const galleryHTML = `
@@ -420,7 +420,7 @@ document.addEventListener('DOMContentLoaded', function() {
       photo1Alt: "First Time Meeting 😍",
       photo2Alt: "Happy Together 😊",
       photo3Alt: "Engagement Day 💍",
-      photo4Alt: "Pretty Little Baby 🐣",
+      photo4Alt: "Who will be my future husband/wife? 🤭",
       
       // Guestbook
       guestbookTitle: "Leave Us a Message",
@@ -500,7 +500,7 @@ document.addEventListener('DOMContentLoaded', function() {
       photo1Alt: "Первая встреча 😍",
       photo2Alt: "Счастливы вместе 😊", 
       photo3Alt: "День помолвки 💍",
-      photo4Alt: "хорошенький малыш 🐣",
+      photo4Alt: "Кто же станет моим будущим мужем/женой? 🤭",
       
       // Guestbook
       guestbookTitle: "Оставьте нам сообщение",
