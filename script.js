@@ -600,7 +600,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (joinButton) joinButton.textContent = t.joinButton;
 
       // Update timezone link
-      const timezoneLink = eventSection.querySelector('a[href*="./timezone.html"]');
+      const timezoneLink = eventSection.querySelector('a[href*="./timezones.html"]');
       if (timezoneLink) timezoneLink.innerHTML = `${t.timezoneLink}`;
       
       // Update the ceremony details paragraphs
