@@ -173,6 +173,9 @@
     };
 
     // Load existing messages when page loads
+    // Replace the loadMessages function in your Firebase script section
+
+    // Load existing messages when page loads
     async function loadMessages() {
       try {
         const q = query(collection(db, "guestbook"), orderBy("timestamp", "desc"));
@@ -209,11 +212,74 @@
           entriesContainer.appendChild(entry);
         });
         
+        // Update the comments count after loading messages
+        if (typeof window.updateCommentsCount === 'function') {
+          window.updateCommentsCount();
+        }
+        
         console.log('Messages loaded successfully');
       } catch (error) {
         console.error("Error loading messages: ", error);
       }
     }
+
+    // Also update the submitGuestbookMessage function to refresh the count
+    window.submitGuestbookMessage = async function(name, message) {
+      try {
+        await addDoc(collection(db, "guestbook"), {
+          name: name,
+          message: message,
+          timestamp: serverTimestamp()
+        });
+        
+        // Store the user's name in localStorage so they can delete their messages
+        const userMessages = JSON.parse(localStorage.getItem('userMessages') || '[]');
+        const normalizedName = name.trim().toLowerCase();
+        if (!userMessages.includes(normalizedName)) {
+          userMessages.push(normalizedName);
+          localStorage.setItem('userMessages', JSON.stringify(userMessages));
+        }
+        
+        // Reload messages to show the new one and update count
+        await loadMessages();
+        
+        console.log('Message added successfully');
+        return true;
+      } catch (error) {
+        console.error("Error adding message: ", error);
+        return false;
+      }
+    };
+
+    // Update the deleteGuestbookMessage function to refresh the count
+    window.deleteGuestbookMessage = async function(docId, messageName) {
+      if (!canUserDelete(messageName)) {
+        alert("You can only delete your own messages.");
+        return false;
+      }
+
+      const confirmDelete = confirm("Are you sure you want to delete this message?");
+      if (!confirmDelete) return false;
+
+      try {
+        await deleteDoc(doc(db, "guestbook", docId));
+        
+        // Remove from user's local storage
+        const userMessages = JSON.parse(localStorage.getItem('userMessages') || '[]');
+        const updatedMessages = userMessages.filter(name => name !== messageName.trim().toLowerCase());
+        localStorage.setItem('userMessages', JSON.stringify(updatedMessages));
+        
+        // Reload messages to reflect the deletion and update count
+        await loadMessages();
+        
+        console.log('Message deleted successfully');
+        return true;
+      } catch (error) {
+        console.error("Error deleting message: ", error);
+        alert("Error deleting message. Please try again.");
+        return false;
+      }
+    };
 
     // Add new message to Firestore
     window.submitGuestbookMessage = async function(name, message) {

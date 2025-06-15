@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Enable photo gallery
   createPhotoGallery();
 
-  // 6. Add a simple guestbook functionality - WITH DELETE CAPABILITY
+  // 6. Add a simple guestbook functionality - WITH MODAL COMMENTS VIEW
   const createGuestbook = function() {
     const guestbookHTML = `
       <section class="guestbook">
@@ -257,16 +257,30 @@ document.addEventListener('DOMContentLoaded', function() {
             <label for="guest-message">Your Message:</label>
             <textarea id="guest-message" rows="4" required></textarea>
           </div>
-          <button type="submit" class="submit-button">Submit</button>
+          <div class="button-group">
+            <button type="submit" class="submit-button">Submit</button>
+            <button type="button" id="view-comments-btn" class="view-comments-button">View Messages</button>
+          </div>
         </form>
-        <div class="guestbook-entries"></div>
       </section>
+      
+      <!-- Comments Modal -->
+      <div id="commentsModal" class="comments-modal" onclick="closeCommentsModal(event)">
+        <div class="comments-modal-content">
+          <div class="comments-header">
+            <h3>Guest Messages</h3>
+            <button class="close-comments-modal" onclick="closeCommentsModal()">&times;</button>
+          </div>
+          <div class="comments-body">
+            <div class="guestbook-entries"></div>
+          </div>
+        </div>
+      </div>
     `;
 
-    // Insert the guestbook section INSIDE the main container, not before the footer
+    // Insert the guestbook section INSIDE the main container
     const mainElement = document.querySelector('main');
     if (mainElement) {
-      // Add it as the last section inside main
       mainElement.insertAdjacentHTML('beforeend', guestbookHTML);
       
       // Apply animation styles to the new guestbook section
@@ -277,7 +291,15 @@ document.addEventListener('DOMContentLoaded', function() {
         guestbookSection.style.transition = 'all 0.6s ease-out';
       }
       
-      // Now add the event listener after the form is in the DOM
+      // Add event listener for the view comments button
+      const viewCommentsBtn = document.getElementById('view-comments-btn');
+      if (viewCommentsBtn) {
+        viewCommentsBtn.addEventListener('click', function() {
+          openCommentsModal();
+        });
+      }
+      
+      // Form submission handler
       const form = document.getElementById('guestbook-form');
       if (form) {
         form.addEventListener('submit', async function(e) {
@@ -299,17 +321,18 @@ document.addEventListener('DOMContentLoaded', function() {
               
               if (success) {
                 form.reset();
-                // alert('Thank you for your message! It will appear below.');
                 
                 // Store the user's name in localStorage so they can delete their messages
                 const userMessages = JSON.parse(localStorage.getItem('userMessages') || '[]');
                 userMessages.push(name.trim().toLowerCase());
                 localStorage.setItem('userMessages', JSON.stringify(userMessages));
+                
+                // Update the comments count
+                updateCommentsCount();
               } else {
                 alert('Sorry, there was an error submitting your message. Please try again or contact Jacob ASAP!');
               }
             } else {
-              // Fallback if Firebase isn't loaded yet
               alert('Firebase is still loading. Please try again in a moment.');
             }
           } catch (error) {
@@ -330,7 +353,67 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   };
 
-  // Enable guestbook - now it will be properly contained within the main container
+  // Function to open comments modal
+  window.openCommentsModal = function() {
+    const modal = document.getElementById('commentsModal');
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    
+    // Load messages when modal opens (if not already loaded)
+    if (typeof window.loadMessages === 'function') {
+      window.loadMessages();
+    }
+  };
+
+  // Function to close comments modal
+  window.closeCommentsModal = function(event) {
+    const modal = document.getElementById('commentsModal');
+    
+    // Only close if clicking on the backdrop or close button
+    if (!event || event.target === modal || event.target.classList.contains('close-comments-modal')) {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto'; // Restore scrolling
+    }
+  };
+
+  // Function to update comments count
+  window.updateCommentsCount = async function() {
+    try {
+      // This function should be called by your Firebase code after loading messages
+      const entriesContainer = document.querySelector('.guestbook-entries');
+      const entries = entriesContainer ? entriesContainer.children : [];
+      const count = entries.length;
+      
+      const countElement = document.getElementById('comments-count');
+      if (countElement) {
+        const t = window.translations && window.currentLanguage ? 
+                  window.translations[window.currentLanguage()] : 
+                  { messagesCount: "messages", noMessages: "No messages yet" };
+        
+        if (count === 0) {
+          countElement.textContent = t.noMessages || "No messages yet";
+        } else if (count === 1) {
+          countElement.textContent = `1 ${t.messagesCount || "message"}`;
+        } else {
+          countElement.textContent = `${count} ${t.messagesCount || "messages"}`;
+        }
+      }
+    } catch (error) {
+      console.error('Error updating comments count:', error);
+    }
+  };
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      const modal = document.getElementById('commentsModal');
+      if (modal && modal.style.display === 'block') {
+        window.closeCommentsModal();
+      }
+    }
+  });
+
+  // Enable guestbook
   createGuestbook();
 
   // 7. Add a music toggle button
@@ -440,7 +523,13 @@ document.addEventListener('DOMContentLoaded', function() {
       hours: "Hours",
       minutes: "Minutes",
       seconds: "Seconds",
-      marriedMessage: "We're married! 🎉"
+      marriedMessage: "We're married! 🎉",
+
+      viewMessagesButton: "View Messages",
+      messagesCount: "messages",
+      noMessages: "No messages yet",
+      guestMessagesTitle: "Guest Messages"
+
     },
     
     ru: {
@@ -520,7 +609,12 @@ document.addEventListener('DOMContentLoaded', function() {
       hours: "Часов",
       minutes: "Минут",
       seconds: "Секунд",
-      marriedMessage: "Мы поженились! 🎉"
+      marriedMessage: "Мы поженились! 🎉",
+
+      viewMessagesButton: "Посмотреть сообщения",
+      messagesCount: "сообщений",
+      noMessages: "Пока нет сообщений",
+      guestMessagesTitle: "Сообщения гостей"
     }
   };
 
@@ -624,6 +718,15 @@ document.addEventListener('DOMContentLoaded', function() {
       if (thankYouParagraph) {
         thankYouParagraph.textContent = t.ceremonyDetails2;
       }
+
+      // Update view comments button
+      const viewCommentsBtn = document.getElementById('view-comments-btn');
+      if (viewCommentsBtn) viewCommentsBtn.textContent = t.viewMessagesButton;
+
+      // Update comments modal title
+      const commentsModalTitle = document.querySelector('.comments-header h3');
+      if (commentsModalTitle) commentsModalTitle.textContent = t.guestMessagesTitle;
+
     }
     
     // Update timeline
@@ -744,7 +847,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const footer = document.querySelector('footer');
     if (footer) {
       const paragraphs = footer.querySelectorAll('p');
-      if (paragraphs[0]) paragraphs[0].textContent = t.footerText;
+      // Update the first paragraph (the one with "With love and great joy,")
+      if (paragraphs[0]) {
+        paragraphs[0].textContent = t.footerText;
+      }
+      // Update the second paragraph with the translated names
+      if (paragraphs[1]) {
+        paragraphs[1].innerHTML = `<strong>${t.headerTitle}</strong>`;
+      }
     }
     
     // Update music button
