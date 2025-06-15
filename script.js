@@ -626,26 +626,6 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   // Function to open timezone modal
-  window.openTimezoneModal = function() {
-    const modal = document.getElementById('timezoneModal');
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-    
-    // Update timezone modal content based on current language
-    updateTimezoneModalLanguage();
-  };
-
-  // Function to close timezone modal
-  window.closeTimezoneModal = function(event) {
-    const modal = document.getElementById('timezoneModal');
-    
-    // Only close if clicking on the backdrop or close button
-    if (!event || event.target === modal || event.target.classList.contains('close-timezone-modal')) {
-      modal.style.display = 'none';
-      document.body.style.overflow = 'auto'; // Restore scrolling
-    }
-  };
-
   // Function to update timezone modal language
   window.updateTimezoneModalLanguage = function() {
     const t = window.translations && window.currentLanguage ? 
@@ -699,9 +679,15 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     
-    // Update dates
+    // Update dates - INCLUDING the ceremony time date
     const mondayDates = ['indianapolis-date-modal', 'dallas-date-modal', 'sf-date-modal', 'la-date-modal'];
     const tuesdayDates = ['dublin-date-modal', 'moscow-date-modal', 'spb-date-modal', 'uude-date-modal', 'jakarta-date-modal', 'singapore-date-modal', 'ulaanbaatar-date-modal'];
+    
+    // Update ceremony time date (the primary time card)
+    const ceremonyDateElement = document.querySelector('.primary-time .timezone-code');
+    if (ceremonyDateElement) {
+      ceremonyDateElement.textContent = t.mondayDate || 'Monday, July 7, 2025';
+    }
     
     mondayDates.forEach(id => {
       const element = document.getElementById(id);
@@ -712,6 +698,27 @@ document.addEventListener('DOMContentLoaded', function() {
       const element = document.getElementById(id);
       if (element) element.textContent = t.tuesdayDate || 'Tuesday, July 8, 2025';
     });
+  };
+
+  // Function to open timezone modal
+  window.openTimezoneModal = function() {
+    const modal = document.getElementById('timezoneModal');
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    
+    // Update timezone modal content based on current language
+    updateTimezoneModalLanguage();
+  };
+
+  // Function to close timezone modal
+  window.closeTimezoneModal = function(event) {
+    const modal = document.getElementById('timezoneModal');
+    
+    // Only close if clicking on the backdrop or close button
+    if (!event || event.target === modal || event.target.classList.contains('close-timezone-modal')) {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto'; // Restore scrolling
+    }
   };
 
   // Close timezone modal with Escape key
