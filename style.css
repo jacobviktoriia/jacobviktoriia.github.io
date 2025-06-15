@@ -1140,6 +1140,11 @@ footer {
     max-width: 300px;
   }
   
+  .submit-button {
+    width: 100%;
+    max-width: 300px;
+  }
+  
   .guestbook .button-group {
     display: flex;
     flex-direction: column;
