@@ -439,6 +439,294 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   };
 
+  // Add this to your script.js file after the guestbook modal functions
+
+  // 8. Add timezone modal functionality
+  const createTimezoneModal = function() {
+    const timezoneModalHTML = `
+      <!-- Timezone Modal -->
+      <div id="timezoneModal" class="timezone-modal" onclick="closeTimezoneModal(event)">
+        <div class="timezone-modal-content">
+          <div class="timezone-header">
+            <h2 id="timezone-modal-title">Ceremony Time Zones</h2>
+            <button class="close-timezone-modal" onclick="closeTimezoneModal()">&times;</button>
+          </div>
+          <div class="timezone-body">
+            <div class="timezone-note">
+              <p id="timezone-note-text">Please find your local time below to join Jacob & Viktoriia's wedding ceremony!</p>
+            </div>
+
+            <div class="timezone-grid">
+              <!-- Primary ceremony time -->
+              <div class="timezone-card primary-time">
+                <div class="timezone-header-card">
+                  <span class="flag">🇺🇸</span>
+                  <div>
+                    <div class="city-name" id="ceremony-city-modal">Ceremony Time</div>
+                    <div class="country-name" id="ceremony-zone-modal">UTC-6 Time Zone</div>
+                  </div>
+                </div>
+                <div class="time-display">6:30 PM</div>
+                <div class="timezone-code">Monday, July 7, 2025</div>
+              </div>
+
+              <!-- Ulan-Ude, Russia -->
+              <div class="timezone-card">
+                <div class="timezone-header-card">
+                  <span class="flag">🇷🇺</span>
+                  <div>
+                    <div class="city-name" id="uude-city-modal">Ulan-Ude</div>
+                    <div class="country-name" id="uude-country-modal">Russia</div>
+                  </div>
+                </div>
+                <div class="time-display">8:30 AM</div>
+                <div class="timezone-code"><span id="uude-date-modal">Tuesday, July 8, 2025</span></div>
+              </div>
+
+              <!-- Ulaanbaatar, Mongolia -->
+              <div class="timezone-card">
+                <div class="timezone-header-card">
+                  <span class="flag">🇲🇳</span>
+                  <div>
+                    <div class="city-name" id="ulaanbaatar-city-modal">Ulaanbaatar</div>
+                    <div class="country-name" id="ulaanbaatar-country-modal">Mongolia</div>
+                  </div>
+                </div>
+                <div class="time-display">8:30 AM</div>
+                <div class="timezone-code"><span id="ulaanbaatar-date-modal">Tuesday, July 8, 2025</span></div>
+              </div>
+
+              <!-- Singapore -->
+              <div class="timezone-card">
+                <div class="timezone-header-card">
+                  <span class="flag">🇸🇬</span>
+                  <div>
+                    <div class="city-name" id="singapore-city-modal">Singapore</div>
+                    <div class="country-name" id="singapore-country-modal">Singapore</div>
+                  </div>
+                </div>
+                <div class="time-display">8:30 AM</div>
+                <div class="timezone-code"><span id="singapore-date-modal">Tuesday, July 8, 2025</span></div>
+              </div>
+
+              <!-- Jakarta, Indonesia -->
+              <div class="timezone-card">
+                <div class="timezone-header-card">
+                  <span class="flag">🇮🇩</span>
+                  <div>
+                    <div class="city-name" id="jakarta-city-modal">Jakarta</div>
+                    <div class="country-name" id="jakarta-country-modal">Indonesia</div>
+                  </div>
+                </div>
+                <div class="time-display">7:30 AM</div>
+                <div class="timezone-code"><span id="jakarta-date-modal">Tuesday, July 8, 2025</span></div>
+              </div>
+
+              <!-- Saint-Petersburg, Russia -->
+              <div class="timezone-card">
+                <div class="timezone-header-card">
+                  <span class="flag">🇷🇺</span>
+                  <div>
+                    <div class="city-name" id="spb-city-modal">Saint-Petersburg</div>
+                    <div class="country-name" id="spb-country-modal">Russia</div>
+                  </div>
+                </div>
+                <div class="time-display">3:30 AM</div>
+                <div class="timezone-code"><span id="spb-date-modal">Tuesday, July 8, 2025</span></div>
+              </div>
+
+              <!-- Moscow, Russia -->
+              <div class="timezone-card">
+                <div class="timezone-header-card">
+                  <span class="flag">🇷🇺</span>
+                  <div>
+                    <div class="city-name" id="moscow-city-modal">Moscow</div>
+                    <div class="country-name" id="moscow-country-modal">Russia</div>
+                  </div>
+                </div>
+                <div class="time-display">3:30 AM</div>
+                <div class="timezone-code"><span id="moscow-date-modal">Tuesday, July 8, 2025</span></div>
+              </div>
+
+              <!-- Dublin, Ireland -->
+              <div class="timezone-card">
+                <div class="timezone-header-card">
+                  <span class="flag">🇮🇪</span>
+                  <div>
+                    <div class="city-name" id="dublin-city-modal">Dublin</div>
+                    <div class="country-name" id="dublin-country-modal">Ireland</div>
+                  </div>
+                </div>
+                <div class="time-display">1:30 AM</div>
+                <div class="timezone-code"><span id="dublin-date-modal">Tuesday, July 8, 2025</span></div>
+              </div>
+
+              <!-- Indianapolis, USA -->
+              <div class="timezone-card">
+                <div class="timezone-header-card">
+                  <span class="flag">🇺🇸</span>
+                  <div>
+                    <div class="city-name" id="indianapolis-city-modal">Indianapolis</div>
+                    <div class="country-name" id="indianapolis-country-modal">USA</div>
+                  </div>
+                </div>
+                <div class="time-display">8:30 PM</div>
+                <div class="timezone-code"><span id="indianapolis-date-modal">Monday, July 7, 2025</span></div>
+              </div>
+
+              <!-- Dallas, USA -->
+              <div class="timezone-card">
+                <div class="timezone-header-card">
+                  <span class="flag">🇺🇸</span>
+                  <div>
+                    <div class="city-name" id="dallas-city-modal">Dallas</div>
+                    <div class="country-name" id="dallas-country-modal">USA</div>
+                  </div>
+                </div>
+                <div class="time-display">7:30 PM</div>
+                <div class="timezone-code"><span id="dallas-date-modal">Monday, July 7, 2025</span></div>
+              </div>
+
+              <!-- San Francisco, USA -->
+              <div class="timezone-card">
+                <div class="timezone-header-card">
+                  <span class="flag">🇺🇸</span>
+                  <div>
+                    <div class="city-name" id="sf-city-modal">San Francisco</div>
+                    <div class="country-name" id="sf-country-modal">USA</div>
+                  </div>
+                </div>
+                <div class="time-display">5:30 PM</div>
+                <div class="timezone-code"><span id="sf-date-modal">Monday, July 7, 2025</span></div>
+              </div>
+
+              <!-- Los Angeles, USA -->
+              <div class="timezone-card">
+                <div class="timezone-header-card">
+                  <span class="flag">🇺🇸</span>
+                  <div>
+                    <div class="city-name" id="la-city-modal">Los Angeles</div>
+                    <div class="country-name" id="la-country-modal">USA</div>
+                  </div>
+                </div>
+                <div class="time-display">5:30 PM</div>
+                <div class="timezone-code"><span id="la-date-modal">Monday, July 7, 2025</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Insert the timezone modal after the comments modal
+    const commentsModal = document.getElementById('commentsModal');
+    if (commentsModal) {
+      commentsModal.insertAdjacentHTML('afterend', timezoneModalHTML);
+    }
+  };
+
+  // Function to open timezone modal
+  window.openTimezoneModal = function() {
+    const modal = document.getElementById('timezoneModal');
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    
+    // Update timezone modal content based on current language
+    updateTimezoneModalLanguage();
+  };
+
+  // Function to close timezone modal
+  window.closeTimezoneModal = function(event) {
+    const modal = document.getElementById('timezoneModal');
+    
+    // Only close if clicking on the backdrop or close button
+    if (!event || event.target === modal || event.target.classList.contains('close-timezone-modal')) {
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto'; // Restore scrolling
+    }
+  };
+
+  // Function to update timezone modal language
+  window.updateTimezoneModalLanguage = function() {
+    const t = window.translations && window.currentLanguage ? 
+              window.translations[window.currentLanguage()] : null;
+    
+    if (!t) return;
+    
+    // Update modal title and note
+    const titleElement = document.getElementById('timezone-modal-title');
+    const noteElement = document.getElementById('timezone-note-text');
+    
+    if (titleElement) titleElement.textContent = t.timezoneModalTitle || 'Ceremony Time Zones';
+    if (noteElement) noteElement.textContent = t.timezoneModalNote || 'Please find your local time below to join Jacob & Viktoriia\'s wedding ceremony!';
+    
+    // Update ceremony time labels
+    const ceremonyCity = document.getElementById('ceremony-city-modal');
+    const ceremonyZone = document.getElementById('ceremony-zone-modal');
+    if (ceremonyCity) ceremonyCity.textContent = t.ceremonyCity || 'Ceremony Time';
+    if (ceremonyZone) ceremonyZone.textContent = t.ceremonyZone || 'UTC-6 Time Zone';
+    
+    // Update city names
+    const cityUpdates = [
+      { id: 'indianapolis-city-modal', key: 'indianapolisCity' },
+      { id: 'indianapolis-country-modal', key: 'indianapolisCountry' },
+      { id: 'dallas-city-modal', key: 'dallasCity' },
+      { id: 'dallas-country-modal', key: 'dallasCountry' },
+      { id: 'sf-city-modal', key: 'sfCity' },
+      { id: 'sf-country-modal', key: 'sfCountry' },
+      { id: 'la-city-modal', key: 'laCity' },
+      { id: 'la-country-modal', key: 'laCountry' },
+      { id: 'dublin-city-modal', key: 'dublinCity' },
+      { id: 'dublin-country-modal', key: 'dublinCountry' },
+      { id: 'moscow-city-modal', key: 'moscowCity' },
+      { id: 'moscow-country-modal', key: 'moscowCountry' },
+      { id: 'spb-city-modal', key: 'spbCity' },
+      { id: 'spb-country-modal', key: 'spbCountry' },
+      { id: 'uude-city-modal', key: 'uudeCity' },
+      { id: 'uude-country-modal', key: 'uudeCountry' },
+      { id: 'jakarta-city-modal', key: 'jakartaCity' },
+      { id: 'jakarta-country-modal', key: 'jakartaCountry' },
+      { id: 'singapore-city-modal', key: 'singaporeCity' },
+      { id: 'singapore-country-modal', key: 'singaporeCountry' },
+      { id: 'ulaanbaatar-city-modal', key: 'ulaanbaatarCity' },
+      { id: 'ulaanbaatar-country-modal', key: 'ulaanbaatarCountry' }
+    ];
+    
+    cityUpdates.forEach(update => {
+      const element = document.getElementById(update.id);
+      if (element && t[update.key]) {
+        element.textContent = t[update.key];
+      }
+    });
+    
+    // Update dates
+    const mondayDates = ['indianapolis-date-modal', 'dallas-date-modal', 'sf-date-modal', 'la-date-modal'];
+    const tuesdayDates = ['dublin-date-modal', 'moscow-date-modal', 'spb-date-modal', 'uude-date-modal', 'jakarta-date-modal', 'singapore-date-modal', 'ulaanbaatar-date-modal'];
+    
+    mondayDates.forEach(id => {
+      const element = document.getElementById(id);
+      if (element) element.textContent = t.mondayDate || 'Monday, July 7, 2025';
+    });
+    
+    tuesdayDates.forEach(id => {
+      const element = document.getElementById(id);
+      if (element) element.textContent = t.tuesdayDate || 'Tuesday, July 8, 2025';
+    });
+  };
+
+  // Close timezone modal with Escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      const modal = document.getElementById('timezoneModal');
+      if (modal && modal.style.display === 'block') {
+        window.closeTimezoneModal();
+      }
+    }
+  });
+
+  // Enable timezone modal
+  createTimezoneModal();
+
   // Enable music player
   addMusicPlayer();
 
@@ -528,7 +816,36 @@ document.addEventListener('DOMContentLoaded', function() {
       viewMessagesButton: "View Messages",
       messagesCount: "messages",
       noMessages: "No messages yet",
-      guestMessagesTitle: "Guest Messages"
+      guestMessagesTitle: "Guest Messages",
+
+      timezoneModalTitle: "Ceremony Time Zones",
+      timezoneModalNote: "Please find your local time below to join Jacob & Viktoriia's wedding ceremony!",
+      ceremonyCity: "Ceremony Time",
+      ceremonyZone: "UTC-6 Time Zone",
+      indianapolisCity: "Indianapolis",
+      indianapolisCountry: "USA",
+      dallasCity: "Dallas",
+      dallasCountry: "USA",
+      sfCity: "San Francisco", 
+      sfCountry: "USA",
+      laCity: "Los Angeles",
+      laCountry: "USA",
+      dublinCity: "Dublin",
+      dublinCountry: "Ireland",
+      moscowCity: "Moscow",
+      moscowCountry: "Russia",
+      spbCity: "Saint-Petersburg",
+      spbCountry: "Russia",
+      uudeCity: "Ulan-Ude",
+      uudeCountry: "Russia",
+      jakartaCity: "Jakarta",
+      jakartaCountry: "Indonesia",
+      singaporeCity: "Singapore",
+      singaporeCountry: "Singapore",
+      ulaanbaatarCity: "Ulaanbaatar",
+      ulaanbaatarCountry: "Mongolia",
+      mondayDate: "Monday, July 7, 2025",
+      tuesdayDate: "Tuesday, July 8, 2025",
 
     },
     
@@ -614,7 +931,36 @@ document.addEventListener('DOMContentLoaded', function() {
       viewMessagesButton: "Посмотреть сообщения",
       messagesCount: "сообщений",
       noMessages: "Пока нет сообщений",
-      guestMessagesTitle: "Сообщения гостей"
+      guestMessagesTitle: "Сообщения гостей",
+
+      timezoneModalTitle: "Часовые Пояса Церемонии",
+      timezoneModalNote: "Пожалуйста, найдите ваше местное время ниже, чтобы присоединиться к свадебной церемонии Джейкоба и Виктории!",
+      ceremonyCity: "Время Церемонии",
+      ceremonyZone: "Часовой пояс UTC-6",
+      indianapolisCity: "Индианаполис",
+      indianapolisCountry: "США",
+      dallasCity: "Даллас",
+      dallasCountry: "США", 
+      sfCity: "Сан-Франциско",
+      sfCountry: "США",
+      laCity: "Лос-Анджелес",
+      laCountry: "США",
+      dublinCity: "Дублин",
+      dublinCountry: "Ирландия",
+      moscowCity: "Москва",
+      moscowCountry: "Россия",
+      spbCity: "Санкт-Петербург",
+      spbCountry: "Россия",
+      uudeCity: "Улан-Удэ",
+      uudeCountry: "Россия",
+      jakartaCity: "Джакарта",
+      jakartaCountry: "Индонезия",
+      singaporeCity: "Сингапур",
+      singaporeCountry: "Сингапур",
+      ulaanbaatarCity: "Улан-Батор",
+      ulaanbaatarCountry: "Монголия",
+      mondayDate: "Понедельник, 7 июля 2025",
+      tuesdayDate: "Вторник, 8 июля 2025",
     }
   };
 
@@ -692,6 +1038,9 @@ document.addEventListener('DOMContentLoaded', function() {
       // Update join button
       const joinButton = eventSection.querySelector('.join-button');
       if (joinButton) joinButton.textContent = t.joinButton;
+
+      const timezoneButton = eventSection.querySelector('.timezone-button');
+      if (timezoneButton) timezoneButton.textContent = t.timezoneLink;
 
       // Update timezone link
       const timezoneLink = eventSection.querySelector('a[href*="./timezones.html"]');
