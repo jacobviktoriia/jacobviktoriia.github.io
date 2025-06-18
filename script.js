@@ -953,7 +953,7 @@ document.addEventListener('DOMContentLoaded', function() {
       hours: "Часов",
       minutes: "Минут",
       seconds: "Секунд",
-      ceremonyStarted: "Идёт свадьба...! 💒",
+      ceremonyStarted: "Идет церемония...! 💒",
       marriedMessage: "Только что поженились! 🎉",
 
       viewMessagesButton: "Посмотреть сообщения",
