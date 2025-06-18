@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // 2. Wedding countdown timer
   function updateCountdown() {
-    const ceremonyStartTime = new Date('June 16, 2025 18:30:00 UTC-6').getTime();
-    const ceremonyEndTime = new Date('June 16, 2025 19:00:00 UTC-6').getTime();
+    const ceremonyStartTime = new Date('July 7, 2025 18:30:00 UTC-6').getTime();
+    const ceremonyEndTime = new Date('July 7, 2025 19:00:00 UTC-6').getTime();
     const now = new Date().getTime();
 
     // Default English labels
