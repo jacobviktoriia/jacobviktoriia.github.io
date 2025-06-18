@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // 2. Wedding countdown timer
   function updateCountdown() {
-    const weddingDate = new Date('July 7, 2025 18:30:00 UTC-6').getTime();
+    const ceremonyStartTime = new Date('June 16, 2025 18:30:00 UTC-6').getTime();
+    const ceremonyEndTime = new Date('June 16, 2025 19:00:00 UTC-6').getTime();
     const now = new Date().getTime();
-    const distance = weddingDate - now;
 
     // Default English labels
     let labels = {
@@ -25,7 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
       hours: "Hours", 
       minutes: "Minutes",
       seconds: "Seconds",
-      marriedMessage: "We're married! 🎉"
+      ceremonyStarted: "Wedding in progress...! 💒",
+      marriedMessage: "Just got married! 🎉"
     };
 
     // Check if translations are loaded and get current language labels
@@ -36,11 +37,29 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
 
-    if (distance < 0) {
-      document.getElementById('countdown').innerHTML = labels.marriedMessage;
+    // Check if ceremony has started but not yet finished
+    if (now >= ceremonyStartTime && now < ceremonyEndTime) {
+      document.getElementById('countdown').innerHTML = `
+        <div class="countdown-special-message">
+          <div class="special-message-text">${labels.ceremonyStarted}</div>
+        </div>
+      `;
       return;
     }
 
+    // Check if ceremony is finished (they're married!)
+    if (now >= ceremonyEndTime) {
+      document.getElementById('countdown').innerHTML = `
+        <div class="countdown-special-message">
+          <div class="special-message-text">${labels.marriedMessage}</div>
+        </div>
+      `;
+      return;
+    }
+
+    // Regular countdown display (before ceremony)
+    const distance = ceremonyStartTime - now;
+    
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -818,7 +837,8 @@ document.addEventListener('DOMContentLoaded', function() {
       hours: "Hours",
       minutes: "Minutes",
       seconds: "Seconds",
-      marriedMessage: "We're married! 🎉",
+      ceremonyStarted: "Wedding in progress...! 💒",
+      marriedMessage: "Just got married! 🎉",
 
       viewMessagesButton: "View Messages",
       messagesCount: "messages",
@@ -933,7 +953,8 @@ document.addEventListener('DOMContentLoaded', function() {
       hours: "Часов",
       minutes: "Минут",
       seconds: "Секунд",
-      marriedMessage: "Мы поженились! 🎉",
+      ceremonyStarted: "Идёт свадьба...! 💒",
+      marriedMessage: "Только что поженились! 🎉",
 
       viewMessagesButton: "Посмотреть сообщения",
       messagesCount: "сообщений",
